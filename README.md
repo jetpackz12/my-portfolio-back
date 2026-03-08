@@ -1,46 +1,65 @@
+# Portfolio Backend API
 
-# About:
-This is the backend of my new portfolio project
+## About
+This project is the backend API for my personal portfolio website.
+It is built using Laravel and provides endpoints for managing
+projects, images, and admin authentication.
 
-# Install Composer Dependencies
+The frontend of this project is built using Vue.js.
+
+## Requirements
+
+- PHP 8.2+
+- Composer
+- MySQL / MariaDB
+
+## Install Composer Dependencies
 
 ```
 composer install
 ```
 
-# Set Up Environment Variables
+## Set Up Environment Variables
 
 ```
 cp .env.example .env
 ```
 
-# Generate an Application Key
+## Generate an Application Key
 
 ```
 php artisan key:generate
 ```
 
-# Set Up the Database
+## Database Setup
 
-```
+Update your database configuration in `.env`:
+
+DB_DATABASE=portfolio_db
+DB_USERNAME=root
+DB_PASSWORD=
+
+Run migrations and seed the database:
+
 php artisan migrate --seed
-```
 
-# Image upload publicly accessible
+## Storage Link
+
+To make uploaded images publicly accessible:
 
 ```
 php artisan storage:link
 ```
 
-# Serve the Application
+## Run the Server
 
 ```
 php artisan serve
 ```
 
-# Admin Credential
+## Admin Credential (Development Only)
 
 ```
-email: jetpackzabela12@gmail.com
+email: admin@gmail.com
 Password: password
 ```
