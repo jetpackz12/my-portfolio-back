@@ -35,13 +35,13 @@ php artisan key:generate
 
 Update your database configuration in `.env`:
 
-DB_DATABASE=portfolio_db
-DB_USERNAME=root
-DB_PASSWORD=
+- DB_DATABASE=portfolio_db
+- DB_USERNAME=root
+- DB_PASSWORD=
 
 Run migrations and seed the database:
 
-php artisan migrate --seed
+- php artisan migrate --seed
 
 ## Storage Link
 
