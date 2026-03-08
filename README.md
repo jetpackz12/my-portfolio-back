@@ -1,6 +1,7 @@
 # Portfolio Backend API
 
 ## About
+
 This project is the backend API for my personal portfolio website.
 It is built using Laravel and provides endpoints for managing
 projects, images, and admin authentication.
@@ -41,7 +42,9 @@ Update your database configuration in `.env`:
 
 Run migrations and seed the database:
 
-- php artisan migrate --seed
+```
+php artisan migrate --seed
+```
 
 ## Storage Link
 
