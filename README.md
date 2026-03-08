@@ -63,6 +63,6 @@ php artisan serve
 ## Admin Credential (Development Only)
 
 ```
-email: admin@gmail.com
+Email: admin@gmail.com
 Password: password
 ```
