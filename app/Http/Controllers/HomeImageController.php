@@ -47,7 +47,7 @@ class HomeImageController extends Controller
 
         $data = [
             'message' => "You have successfully add new data!",
-            'home_image' => $home_image
+            'data' => $home_image
         ];
 
         return response()->json($data);
@@ -93,7 +93,7 @@ class HomeImageController extends Controller
 
         $data = [
             'message' => "You have successfully update this data!",
-            'home_image' => $home_image
+            'data' => $home_image
         ];
 
         return response()->json($data);
