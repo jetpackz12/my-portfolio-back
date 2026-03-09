@@ -4,16 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\HomeImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class HomeImageController extends Controller
 {
+    const CACHE_KEY = "homeImage";
+    const CACHE_SECONDS = 60 * 5;
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = HomeImage::all();
+        $data = Cache::remember(self::CACHE_KEY, self::CACHE_SECONDS, function () {
+            return HomeImage::all();
+        });
 
         return response()->json($data);
     }
@@ -36,6 +42,8 @@ class HomeImageController extends Controller
         $home_image->name = $validate['name'];
         $home_image->image_path = $path;
         $home_image->save();
+
+        Cache::forget(self::CACHE_KEY);
 
         $data = [
             'message' => "You have successfully add new data!",
@@ -81,6 +89,8 @@ class HomeImageController extends Controller
         $home_image->name = $validate['name'];
         $home_image->save();
 
+        Cache::forget(self::CACHE_KEY);
+
         $data = [
             'message' => "You have successfully update this data!",
             'home_image' => $home_image
@@ -99,6 +109,8 @@ class HomeImageController extends Controller
         Storage::disk('public')->delete($home_image->image_path);
 
         $home_image->delete();
+
+        Cache::forget(self::CACHE_KEY);
 
         return response()->json(['message' => "You have successfully delete this data!"]);
     }
