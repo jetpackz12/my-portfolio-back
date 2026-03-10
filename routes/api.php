@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutMeEducationalController;
 use App\Http\Controllers\AboutMeSkillController;
 use App\Http\Controllers\AboutMeWorkController;
 use App\Http\Controllers\HomeDescriptionController;
@@ -57,4 +58,12 @@ Route::prefix('/v1/aboutme/skill')->group(function () {
     Route::get('/edit/{id}', [AboutMeSkillController::class, 'edit']);
     Route::put('/update/{id}', [AboutMeSkillController::class, 'update']);
     Route::delete('/destroy/{id}', [AboutMeSkillController::class, 'destroy']);
+})->middleware('auth:sanctum');
+
+Route::prefix('/v1/aboutme/educational')->group(function () {
+    Route::get('/', [AboutMeEducationalController::class, 'index']);
+    Route::post('/store', [AboutMeEducationalController::class, 'store']);
+    Route::get('/edit/{id}', [AboutMeEducationalController::class, 'edit']);
+    Route::put('/update/{id}', [AboutMeEducationalController::class, 'update']);
+    Route::delete('/destroy/{id}', [AboutMeEducationalController::class, 'destroy']);
 })->middleware('auth:sanctum');
