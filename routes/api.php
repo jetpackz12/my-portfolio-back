@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutMeWorkController;
 use App\Http\Controllers\HomeDescriptionController;
 use App\Http\Controllers\HomeImageController;
 use App\Http\Controllers\HomeMovingTextController;
@@ -39,4 +40,12 @@ Route::prefix('/v1/offer')->group(function () {
     Route::get('/edit/{id}', [OfferController::class, 'edit']);
     Route::put('/update/{id}', [OfferController::class, 'update']);
     Route::delete('/destroy/{id}', [OfferController::class, 'destroy']);
+})->middleware('auth:sanctum');
+
+Route::prefix('/v1/aboutme/work')->group(function () {
+    Route::get('/', [AboutMeWorkController::class, 'index']);
+    Route::post('/store', [AboutMeWorkController::class, 'store']);
+    Route::get('/edit/{id}', [AboutMeWorkController::class, 'edit']);
+    Route::put('/update/{id}', [AboutMeWorkController::class, 'update']);
+    Route::delete('/destroy/{id}', [AboutMeWorkController::class, 'destroy']);
 })->middleware('auth:sanctum');
