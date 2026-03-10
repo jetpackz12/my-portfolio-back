@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class HomeImageController extends Controller
 {
-    const CACHE_KEY = "homeImage";
+    const CACHE_KEY = "HomeImage";
     const CACHE_SECONDS = 60 * 5;
 
     /**
