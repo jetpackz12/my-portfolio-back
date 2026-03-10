@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeImageController;
 use App\Http\Controllers\HomeMovingTextController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/v1/login', [LoginController::class, 'login']);
@@ -75,4 +76,12 @@ Route::prefix('/v1/aboutme/image')->group(function () {
     Route::get('/edit/{id}', [AboutMeImageController::class, 'edit']);
     Route::put('/update/{id}', [AboutMeImageController::class, 'update']);
     Route::delete('/destroy/{id}', [AboutMeImageController::class, 'destroy']);
+})->middleware('auth:sanctum');
+
+Route::prefix('/v1/project')->group(function () {
+    Route::get('/', [ProjectController::class, 'index']);
+    Route::post('/store', [ProjectController::class, 'store']);
+    Route::get('/edit/{id}', [ProjectController::class, 'edit']);
+    Route::put('/update/{id}', [ProjectController::class, 'update']);
+    Route::delete('/destroy/{id}', [ProjectController::class, 'destroy']);
 })->middleware('auth:sanctum');
