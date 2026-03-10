@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutMeEducationalController;
+use App\Http\Controllers\AboutMeImageController;
 use App\Http\Controllers\AboutMeSkillController;
 use App\Http\Controllers\AboutMeWorkController;
 use App\Http\Controllers\HomeDescriptionController;
@@ -66,4 +67,12 @@ Route::prefix('/v1/aboutme/educational')->group(function () {
     Route::get('/edit/{id}', [AboutMeEducationalController::class, 'edit']);
     Route::put('/update/{id}', [AboutMeEducationalController::class, 'update']);
     Route::delete('/destroy/{id}', [AboutMeEducationalController::class, 'destroy']);
+})->middleware('auth:sanctum');
+
+Route::prefix('/v1/aboutme/image')->group(function () {
+    Route::get('/', [AboutMeImageController::class, 'index']);
+    Route::post('/store', [AboutMeImageController::class, 'store']);
+    Route::get('/edit/{id}', [AboutMeImageController::class, 'edit']);
+    Route::put('/update/{id}', [AboutMeImageController::class, 'update']);
+    Route::delete('/destroy/{id}', [AboutMeImageController::class, 'destroy']);
 })->middleware('auth:sanctum');
