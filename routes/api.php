@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutMeEducationalController;
 use App\Http\Controllers\AboutMeImageController;
 use App\Http\Controllers\AboutMeSkillController;
 use App\Http\Controllers\AboutMeWorkController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeDescriptionController;
 use App\Http\Controllers\HomeImageController;
 use App\Http\Controllers\HomeMovingTextController;
@@ -93,4 +94,12 @@ Route::prefix('/v1/resume')->group(function () {
     Route::get('/edit/{id}', [ResumeController::class, 'edit']);
     Route::put('/update/{id}', [ResumeController::class, 'update']);
     Route::delete('/destroy/{id}', [ResumeController::class, 'destroy']);
+})->middleware('auth:sanctum');
+
+Route::prefix('/v1/contact')->group(function () {
+    Route::get('/', [ContactController::class, 'index']);
+    Route::post('/store', [ContactController::class, 'store']);
+    Route::get('/edit/{id}', [ContactController::class, 'edit']);
+    Route::put('/update/{id}', [ContactController::class, 'update']);
+    Route::delete('/destroy/{id}', [ContactController::class, 'destroy']);
 })->middleware('auth:sanctum');
