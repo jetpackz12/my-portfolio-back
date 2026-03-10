@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeMovingTextController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ResumeController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/v1/login', [LoginController::class, 'login']);
@@ -84,4 +85,12 @@ Route::prefix('/v1/project')->group(function () {
     Route::get('/edit/{id}', [ProjectController::class, 'edit']);
     Route::put('/update/{id}', [ProjectController::class, 'update']);
     Route::delete('/destroy/{id}', [ProjectController::class, 'destroy']);
+})->middleware('auth:sanctum');
+
+Route::prefix('/v1/resume')->group(function () {
+    Route::get('/', [ResumeController::class, 'index']);
+    Route::post('/store', [ResumeController::class, 'store']);
+    Route::get('/edit/{id}', [ResumeController::class, 'edit']);
+    Route::put('/update/{id}', [ResumeController::class, 'update']);
+    Route::delete('/destroy/{id}', [ResumeController::class, 'destroy']);
 })->middleware('auth:sanctum');
