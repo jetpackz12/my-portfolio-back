@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeDescriptionController;
 use App\Http\Controllers\HomeImageController;
 use App\Http\Controllers\HomeMovingTextController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OfferController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/v1/login', [LoginController::class, 'login']);
@@ -30,4 +31,12 @@ Route::prefix('/v1/home/description')->group(function () {
     Route::get('/edit/{id}', [HomeDescriptionController::class, 'edit']);
     Route::put('/update/{id}', [HomeDescriptionController::class, 'update']);
     Route::delete('/destroy/{id}', [HomeDescriptionController::class, 'destroy']);
+})->middleware('auth:sanctum');
+
+Route::prefix('/v1/offer')->group(function () {
+    Route::get('/', [OfferController::class, 'index']);
+    Route::post('/store', [OfferController::class, 'store']);
+    Route::get('/edit/{id}', [OfferController::class, 'edit']);
+    Route::put('/update/{id}', [OfferController::class, 'update']);
+    Route::delete('/destroy/{id}', [OfferController::class, 'destroy']);
 })->middleware('auth:sanctum');
