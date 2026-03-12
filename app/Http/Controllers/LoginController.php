@@ -34,14 +34,12 @@ class LoginController extends Controller
             return response()->json($data, 401);
         }
 
-        $token = $user->createToken('api-token');
-        $token->accessToken->expires_at = now()->addDay(2);
-        $token->accessToken->save();
+        $token = $user->createToken('api-token')->plainTextToken;
 
         $data = [
             'message' => "Login Success",
             'user' => $user,
-            'token' => $token->plainTextToken
+            'token' => $token
         ];
 
         return response()->json($data);
