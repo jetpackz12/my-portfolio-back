@@ -24,14 +24,14 @@ class LoginController extends Controller
             $data = [
                 'message' => "Invalid email"
             ];
-            return response()->json($data);
+            return response()->json($data, 401);
         }
 
         if (!Hash::check($validated['password'], $user->password)) {
             $data = [
                 'message' => "Invalid password"
             ];
-            return response()->json($data);
+            return response()->json($data, 401);
         }
 
         $token = $user->createToken('api-token');
