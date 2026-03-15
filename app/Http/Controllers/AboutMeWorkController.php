@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AboutMeWork;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -19,6 +20,15 @@ class AboutMeWorkController extends Controller
     {
         $data = Cache::remember(self::CACHE_KEY, self::CACHE_SECONDS, function () {
             return AboutMeWork::all();
+        });
+
+        $data = collect($data)->map(function ($item) {
+            if ($item->duration_type == 1) {
+                $item->date_start = Carbon::parse($item->date_start)->format('M Y');
+                $item->date_end = Carbon::parse($item->date_end)->format('M Y');
+            }
+
+            return $item;
         });
 
         return response()->json($data);
