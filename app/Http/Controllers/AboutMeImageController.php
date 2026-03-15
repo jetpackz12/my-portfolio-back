@@ -43,6 +43,8 @@ class AboutMeImageController extends Controller
         $about_me_image->name = $validate['name'];
         $about_me_image->image_path = $path;
         $about_me_image->save();
+        
+        Cache::forget(self::CACHE_KEY);
 
         $data = [
             'message' => "You have succcesfully add new data!",
