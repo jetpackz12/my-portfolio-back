@@ -23,6 +23,9 @@ class AboutMeWorkController extends Controller
         });
 
         $data = collect($data)->map(function ($item) {
+            $item->date_start_default = $item->date_start;
+            $item->date_end_default = $item->date_end;
+
             if ($item->duration_type == 1) {
                 $item->date_start = Carbon::parse($item->date_start)->format('M Y');
                 $item->date_end = Carbon::parse($item->date_end)->format('M Y');
