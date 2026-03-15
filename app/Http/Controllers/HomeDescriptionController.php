@@ -30,13 +30,13 @@ class HomeDescriptionController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'text' => "required|unique:home_descriptions,text"
+            'description' => "required|unique:home_descriptions,description"
         ]);
 
         $data = [];
 
         $home_description = new HomeDescription();
-        $home_description->text = $validate['text'];
+        $home_description->description = $validate['description'];
         $home_description->save();
 
         Cache::forget(self::CACHE_KEY);
@@ -65,13 +65,13 @@ class HomeDescriptionController extends Controller
     public function update(Request $request, $id)
     {
         $validate = $request->validate([
-            'text' => "required|unique:home_descriptions,text," . $id
+            'description' => "required|unique:home_descriptions,description," . $id
         ]);
 
         $data = [];
 
         $home_description = HomeDescription::findOrFail($id);
-        $home_description->text = $validate['text'];
+        $home_description->description = $validate['description'];
         $home_description->save();
 
         Cache::forget(self::CACHE_KEY);
