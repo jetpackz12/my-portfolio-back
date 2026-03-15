@@ -43,7 +43,7 @@ class AboutMeImageController extends Controller
         $about_me_image->name = $validate['name'];
         $about_me_image->image_path = $path;
         $about_me_image->save();
-        
+
         Cache::forget(self::CACHE_KEY);
 
         $data = [
@@ -106,6 +106,7 @@ class AboutMeImageController extends Controller
     public function destroy($id)
     {
         $about_me_image = AboutMeImage::findOrFail($id);
+        Storage::disk('public')->delete($about_me_image->image_path);
         $about_me_image->delete();
 
         Cache::forget(self::CACHE_KEY);
