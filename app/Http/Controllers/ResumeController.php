@@ -118,10 +118,12 @@ class ResumeController extends Controller
     public function destroy($id)
     {
         $resume = Resume::findOrFail($id);
+        Storage::disk('public')->delete($resume->image_path);
+        Storage::disk('public')->delete($resume->file_path);
         $resume->delete();
 
         Cache::forget(self::CACHE_KEY);
 
-        return response()->json(['message'=>"You have successfully delete this data!"]);
+        return response()->json(['message' => "You have successfully delete this data!"]);
     }
 }
