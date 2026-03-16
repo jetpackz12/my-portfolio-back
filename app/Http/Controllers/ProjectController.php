@@ -20,8 +20,19 @@ class ProjectController extends Controller
      */
     public function index()
     {
+
         $data = Cache::remember(self::CACHE_KEY, self::CACHE_SECONDS, function () {
-            return Project::all();
+            $project = Project::all();
+            $project = collect($project)->map(function ($item) {
+                $item->images = Image::where('module_id', $item->id)
+                    ->select("image_path")
+                    ->where('images.module_type', self::MODULE_TYPE_PROJECT)
+                    ->pluck('image_path')
+                    ->toArray();
+                return $item;
+            });
+
+            return $project;
         });
 
         return response()->json($data);
@@ -142,6 +153,10 @@ class ProjectController extends Controller
     {
         $image = Image::where('module_type', self::MODULE_TYPE_PROJECT)->where('module_id', $id);
         $project = Project::findOrFail($id);
+
+        foreach ($image->get() as $img) {
+            Storage::disk('public')->delete($img->image_path);
+        }
 
         $image->delete();
         $project->delete();
