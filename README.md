@@ -14,6 +14,13 @@ The frontend of this project is built using Vue.js.
 - Composer
 - MySQL / MariaDB
 
+## PHP.ini Config
+
+Open your PHP config and increase:
+- upload_max_filesize = 20M
+- post_max_size = 200M
+- max_file_uploads = 100
+
 ## Install Composer Dependencies
 
 ```
