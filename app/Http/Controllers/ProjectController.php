@@ -46,7 +46,7 @@ class ProjectController extends Controller
         $validate = $request->validate([
             'title' => "required",
             'description' => "required",
-            'repository' => "required",
+            'repository' => "nullable",
             'image' => 'required|array',
             'image.*' => 'image|mimes:jpeg,png,jpg|max:5120',
         ]);
@@ -103,7 +103,7 @@ class ProjectController extends Controller
         $validate = $request->validate([
             'title' => "required",
             'description' => "required",
-            'repository' => "required",
+            'repository' => "nullable",
             'image' => 'nullable|array',
             'image.*' => 'image|mimes:jpeg,png,jpg|max:5120',
         ]);
