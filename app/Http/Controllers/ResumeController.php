@@ -126,4 +126,11 @@ class ResumeController extends Controller
 
         return response()->json(['message' => "You have successfully delete this data!"]);
     }
+
+    public function download($id)
+    {
+        $resume = Resume::findOrFail($id);
+
+        return Storage::disk('public')->download($resume->file_path);
+    }
 }
