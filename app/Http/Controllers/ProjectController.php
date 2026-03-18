@@ -47,6 +47,7 @@ class ProjectController extends Controller
             'title' => "required",
             'description' => "required",
             'repository' => "nullable",
+            'project_type' => "required",
             'image' => 'required|array',
             'image.*' => 'image|mimes:jpeg,png,jpg|max:5120',
         ]);
@@ -57,6 +58,7 @@ class ProjectController extends Controller
         $project->title = $validate['title'];
         $project->description = $validate['description'];
         $project->repository = $validate['repository'];
+        $project->project_type = $validate['project_type'];
         $project->save();
 
 
@@ -104,6 +106,7 @@ class ProjectController extends Controller
             'title' => "required",
             'description' => "required",
             'repository' => "nullable",
+            'project_type' => "required",
             'image' => 'nullable|array',
             'image.*' => 'image|mimes:jpeg,png,jpg|max:5120',
         ]);
@@ -114,6 +117,7 @@ class ProjectController extends Controller
         $project->title = $validate['title'];
         $project->description = $validate['description'];
         $project->repository = $validate['repository'];
+        $project->project_type = $validate['project_type'];
         $project->save();
 
         if ($request->hasFile('image')) {

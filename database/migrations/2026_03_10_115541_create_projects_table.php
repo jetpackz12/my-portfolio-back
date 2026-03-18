@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("title");
             $table->text("description");
             $table->text("repository")->nullable();
+            $table->tinyInteger("project_type");
             $table->timestamps();
         });
     }
